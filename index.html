@@ -1,55 +1,193 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Rose Day 🌹</title>
+<meta charset="UTF-8">
+<title>Happy Rose Day ❤️</title>
 
-  <style>
-    body {
-      margin: 0;
-      background: pink;
-      font-family: Arial;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle, #ffd6e8, #ff9ecb);
+  overflow-x: hidden;
+  text-align: center;
+  color: #7a0033;
+}
 
-    h1 {
-      color: darkred;
-      margin-top: 20px;
-    }
+/* ROSE FALL */
+.rose {
+  position: fixed;
+  top: -50px;
+  font-size: 26px;
+  animation: fall linear infinite;
+  pointer-events: none;
+}
+@keyframes fall {
+  to {
+    transform: translateY(110vh) rotate(360deg);
+  }
+}
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
-      padding: 20px;
-    }
+/* TITLE */
+h1 {
+  margin-top: 30px;
+  font-size: 34px;
+}
 
-    img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.4);
-    }
-  </style>
+/* TYPEWRITER */
+#typewriter {
+  font-size: 20px;
+  margin: 15px auto 35px;
+  max-width: 90%;
+  min-height: 50px;
+}
+
+/* SLIDES */
+.slide {
+  display: none;
+}
+.slide.active {
+  display: block;
+}
+
+.photos {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  max-width: 600px;
+  margin: auto;
+}
+
+.photos img {
+  width: 100%;
+  border-radius: 18px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* BUTTONS */
+.buttons {
+  margin: 40px 0 80px;
+}
+
+button {
+  padding: 14px 26px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+}
+
+#yesBtn {
+  background: #ff3366;
+  color: white;
+}
+
+#noBtn {
+  background: #eee;
+  position: absolute;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Happy Rose Day 🌹</h1>
-<p>Just for you ❤️</p>
+<audio autoplay loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
 
-<div class="gallery">
-  <img src="./photos/photo1.jpg">
-  <img src="./photos/photo2.jpg">
-  <img src="./photos/photo3.jpg">
-  <img src="./photos/photo4.jpg">
-  <img src="./photos/photo5.jpg">
-  <img src="./photos/photo6.jpg">
-  <img src="./photos/photo7.jpg">
-  <img src="./photos/photo8.jpg">
-  <img src="./photos/photo9.jpg">
-  <img src="./photos/photo10.jpg">
+<h1>Happy Rose Day 🌹</h1>
+<div id="typewriter"></div>
+
+<!-- SLIDE 1 -->
+<div class="slide active">
+  <div class="photos">
+    <img src="photos/photo1.jpg">
+    <img src="photos/photo2.jpg">
+    <img src="photos/photo3.jpg">
+    <img src="photos/photo4.jpg">
+  </div>
 </div>
+
+<!-- SLIDE 2 -->
+<div class="slide">
+  <div class="photos">
+    <img src="photos/photo5.jpg">
+    <img src="photos/photo6.jpg">
+    <img src="photos/photo7.jpg">
+    <img src="photos/photo8.jpg">
+  </div>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide">
+  <div class="photos">
+    <img src="photos/photo9.jpg">
+    <img src="photos/photo10.jpg">
+  </div>
+</div>
+
+<div class="buttons">
+  <button id="yesBtn">Yes ❤️</button>
+  <button id="noBtn">No 🙈</button>
+</div>
+
+<script>
+/* ROSE FALL */
+for (let i = 0; i < 30; i++) {
+  let r = document.createElement("div");
+  r.className = "rose";
+  r.innerHTML = "🌹";
+  r.style.left = Math.random() * 100 + "vw";
+  r.style.animationDuration = 4 + Math.random() * 5 + "s";
+  document.body.appendChild(r);
+}
+
+/* TYPEWRITER TEXT */
+const text =
+"From the first rose to every heartbeat… 💖 " +
+"this page is just for you. " +
+"You make my days softer, brighter, and full of love 🌹";
+
+let i = 0;
+function type() {
+  if (i < text.length) {
+    document.getElementById("typewriter").innerHTML += text.charAt(i);
+    i++;
+    setTimeout(type, 70);
+  }
+}
+type();
+
+/* SLIDER */
+let slides = document.querySelectorAll(".slide");
+let index = 0;
+setInterval(() => {
+  slides[index].classList.remove("active");
+  index = (index + 1) % slides.length;
+  slides[index].classList.add("active");
+}, 4500);
+
+/* NO BUTTON RUN */
+const noBtn = document.getElementById("noBtn");
+noBtn.addEventListener("mouseover", () => {
+  noBtn.style.left = Math.random() * 80 + "vw";
+  noBtn.style.top = Math.random() * 80 + "vh";
+});
+
+/* YES CLICK */
+document.getElementById("yesBtn").onclick = () => {
+  document.body.innerHTML = `
+    <h1>I knew it ❤️🌹</h1>
+    <p style="font-size:22px; max-width:700px; margin:auto;">
+      Saying yes means more than words…  
+      It means smiles, care, fights, forgiveness, and forever.  
+      <br><br>
+      I miss you. I love you.  
+      Happy Rose Day 💖
+    </p>
+  `;
+};
+</script>
 
 </body>
 </html>
-
