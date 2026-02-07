@@ -2,76 +2,75 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Rose Day 🌹</title>
+<title>For You Chutki 🌹</title>
 
 <style>
-body {
-  margin: 0;
+body{
+  margin:0;
   font-family: Georgia, serif;
-  background: linear-gradient(to bottom, #ffe6f0, #ffb3cc);
-  text-align: center;
-  color: #660029;
-  overflow-x: hidden;
+  background: linear-gradient(to bottom,#ffe6f0,#ffb3cc);
+  text-align:center;
+  color:#660029;
+  overflow-x:hidden;
 }
+h1{margin-top:20px}
 
 /* ROSE FALL */
-.rose {
-  position: fixed;
-  top: -40px;
-  font-size: 24px;
-  animation: fall linear infinite;
-  pointer-events: none;
+.rose{
+  position:fixed;
+  top:-40px;
+  font-size:22px;
+  animation:fall linear infinite;
+  pointer-events:none;
 }
-@keyframes fall {
-  to {
-    transform: translateY(110vh) rotate(360deg);
-  }
+@keyframes fall{
+  to{transform:translateY(120vh) rotate(360deg)}
 }
 
-/* MESSAGE BOX */
-.box {
-  background: rgba(255,255,255,0.85);
-  margin: 30px auto;
-  padding: 25px;
-  border-radius: 20px;
-  max-width: 90%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-  font-size: 18px;
-  line-height: 1.6;
+/* BOX */
+.box{
+  background:rgba(255,255,255,.9);
+  margin:25px auto;
+  padding:25px;
+  border-radius:20px;
+  max-width:90%;
+  box-shadow:0 10px 25px rgba(0,0,0,.25);
+  line-height:1.7;
 }
 
 /* PHOTOS */
-.photos {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 12px;
-  margin-top: 20px;
+.photos{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
 }
-.photos img {
-  width: 100%;
-  border-radius: 16px;
-}
-
-/* BUTTONS */
-.nav-btn {
-  margin: 15px;
-  padding: 12px 22px;
-  font-size: 16px;
-  border-radius: 25px;
-  border: none;
-  background: #ff4d88;
-  color: white;
+.photos img{
+  width:100%;
+  border-radius:16px;
 }
 
-/* MUSIC BUTTON */
-#musicBtn {
-  background: #cc0052;
-  color: white;
-  padding: 12px 24px;
-  border-radius: 25px;
-  border: none;
-  font-size: 16px;
+/* CONTROLS */
+button{
+  padding:10px 22px;
+  border:none;
+  border-radius:25px;
+  background:#ff4d88;
+  color:white;
+  font-size:16px;
+  margin:10px;
 }
+#noBtn{position:absolute;background:#eee;color:#333}
+
+/* SLIDE NUMBERS */
+.dots span{
+  margin:0 6px;
+  font-size:18px;
+  opacity:.4;
+}
+.dots .active{opacity:1;font-weight:bold}
+
+/* MUSIC */
+#musicBtn{background:#cc0052}
 </style>
 </head>
 
@@ -79,49 +78,21 @@ body {
 
 <button id="musicBtn">Tap to Play Music 🎵</button>
 
-<div class="box">
-<h2>🌹 Rose Day Message (from Pinky to Chutki) 🌹</h2>
+<h1>This is for you, Chutki ❤️</h1>
 
-<p>
-Chutki,<br><br>
-Aaj Rose Day hai…<br>
-aur log sirf phool dete hain,<br>
-main apna dil words me de raha hoon.
-</p>
-
-<p>
-This rose is not just a flower,<br>
-ye meri wo feeling hai<br>
-jo har din tumhe dekh kar fresh ho jaati hai 🌹
-</p>
-
-<p>
-Tum meri life ka<br>
-wo soft sa moment ho<br>
-jahan duniya thodi slow ho jaati hai,<br>
-aur dil sirf tumhara naam leta hai.
-</p>
-
-<p>
-I don’t know kal kya hoga,<br>
-but aaj sirf itna kehna hai —<br>
-I like you, I miss you,<br>
-and I really wish tum meri Rose ban jao.
-</p>
-
-<p style="text-align:right;">– Pinky ❤️</p>
-</div>
+<div class="box" id="textBox"></div>
 
 <div class="box">
-<div class="photos" id="slide">
-  <img src="photos/photo1.jpg">
-  <img src="photos/photo2.jpg">
-  <img src="photos/photo3.jpg">
-  <img src="photos/photo4.jpg">
+  <div class="photos" id="photoBox"></div>
+  <div class="dots" id="dots"></div>
+  <button onclick="prev()">⬅</button>
+  <button onclick="next()">➡</button>
 </div>
 
-<button class="nav-btn" onclick="prev()">⬅ Previous</button>
-<button class="nav-btn" onclick="next()">Next ➡</button>
+<div class="box" id="final" style="display:none">
+  <h2>Will you be my Rose? 🌹</h2>
+  <button id="yesBtn">YES ❤️</button>
+  <button id="noBtn">NO 🙈</button>
 </div>
 
 <audio id="bgMusic" loop>
@@ -129,45 +100,85 @@ and I really wish tum meri Rose ban jao.
 </audio>
 
 <script>
-/* ROSE FALL */
-for (let i = 0; i < 25; i++) {
-  let r = document.createElement("div");
-  r.className = "rose";
-  r.innerHTML = "🌹";
-  r.style.left = Math.random() * 100 + "vw";
-  r.style.animationDuration = 4 + Math.random() * 6 + "s";
-  document.body.appendChild(r);
+/* 🌹 200 ROSES */
+for(let i=0;i<200;i++){
+ let r=document.createElement("div");
+ r.className="rose";
+ r.innerHTML="🌹";
+ r.style.left=Math.random()*100+"vw";
+ r.style.animationDuration=3+Math.random()*6+"s";
+ document.body.appendChild(r);
 }
 
 /* MUSIC */
-document.getElementById("musicBtn").onclick = () => {
-  document.getElementById("bgMusic").play();
-  document.getElementById("musicBtn").style.display = "none";
-};
+musicBtn.onclick=()=>{
+ bgMusic.play();
+ musicBtn.style.display="none";
+}
 
-/* SLIDER */
-let slides = [
- ["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"],
- ["photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg"],
- ["photo9.jpg","photo10.jpg"]
+/* SLIDES DATA */
+const slides=[
+ {
+  text:`Chutki,<br>
+  Aaj Rose Day hai…<br>
+  aur log sirf phool dete hain,<br>
+  main apna dil words me de raha hoon 🌹`,
+  photos:["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg"]
+ },
+ {
+  text:`This rose is not just a flower,<br>
+  ye meri wo feeling hai<br>
+  jo har din tumhe dekh kar<br>
+  fresh ho jaati hai ❤️`,
+  photos:["photo5.jpg","photo6.jpg","photo7.jpg","photo8.jpg"]
+ },
+ {
+  text:`Tum meri life ka<br>
+  wo soft sa moment ho<br>
+  jahan duniya slow ho jaati hai<br>
+  aur dil sirf tumhara naam leta hai 🌸`,
+  photos:["photo9.jpg","photo10.jpg"]
+ },
+ {
+  text:`I don’t know kal kya hoga,<br>
+  but aaj itna kehna hai —<br>
+  I like you, I miss you,<br>
+  aur tumhari ek smile ka wait karta hoon 💕`,
+  photos:["photo1.jpg","photo3.jpg"]
+ }
 ];
-let index = 0;
 
-function show() {
-  let html = "";
-  slides[index].forEach(p => {
-    html += `<img src="photos/${p}">`;
-  });
-  document.getElementById("slide").innerHTML = html;
+let i=0;
+
+function render(){
+ textBox.innerHTML=slides[i].text;
+ photoBox.innerHTML="";
+ slides[i].photos.forEach(p=>{
+  photoBox.innerHTML+=`<img src="photos/${p}">`;
+ });
+ dots.innerHTML="";
+ slides.forEach((_,d)=>{
+  dots.innerHTML+=`<span class="${d==i?'active':''}">${d+1}</span>`;
+ });
+ if(i===slides.length-1){
+  final.style.display="block";
+ }
 }
-function next() {
-  index = (index + 1) % slides.length;
-  show();
+render();
+
+function next(){ if(i<slides.length-1){i++;render();}}
+function prev(){ if(i>0){i--;render();}}
+
+/* NO BUTTON RUN */
+noBtn.onmouseover=()=>{
+ noBtn.style.left=Math.random()*80+"vw";
+ noBtn.style.top=Math.random()*80+"vh";
 }
-function prev() {
-  index = (index - 1 + slides.length) % slides.length;
-  show();
-}
+
+/* YES CLICK */
+yesBtn.onclick=()=>{
+ document.body.innerHTML="<h1>I knew it ❤️🌹</h1><p>You are my rose, today and always.</p>";
+};
 </script>
 
 </body>
