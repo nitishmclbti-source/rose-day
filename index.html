@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rose Day for Chutki 🌹</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to bottom, #ff4b6e, #ff9a9e);
+  overflow: hidden;
+  color: white;
+}
+
+.rose-bg span {
+  position: absolute;
+  top: -50px;
+  font-size: 24px;
+  animation: fall linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-50px); }
+  100% { transform: translateY(110vh); }
+}
+
+.box {
+  position: relative;
+  z-index: 2;
+  background: rgba(255,255,255,0.15);
+  margin: 60px auto;
+  padding: 25px;
+  width: 90%;
+  max-width: 420px;
+  border-radius: 20px;
+  text-align: center;
+  backdrop-filter: blur(6px);
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 25px;
+  font-size: 16px;
+  margin: 12px;
+  cursor: pointer;
+}
+
+#nextBtn {
+  background: white;
+  color: #ff4b6e;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- Falling roses -->
+<div class="rose-bg">
+  <span style="left:5%; animation-duration:8s;">🌹</span>
+  <span style="left:15%; animation-duration:10s;">🌹</span>
+  <span style="left:30%; animation-duration:7s;">🌹</span>
+  <span style="left:45%; animation-duration:9s;">🌹</span>
+  <span style="left:60%; animation-duration:11s;">🌹</span>
+  <span style="left:75%; animation-duration:8s;">🌹</span>
+  <span style="left:90%; animation-duration:10s;">🌹</span>
+</div>
+
+<div class="box" id="page1">
+  <h1>Happy Rose Day 🌹</h1>
+  <p>
+    Chutki,<br><br>
+    Aaj Rose Day hai…<br>
+    log sirf phool dete hain,<br>
+    main apna dil words me de raha hoon.
+  </p>
+  <button id="nextBtn" onclick="nextPage()">Next 🌹</button>
+</div>
+
+<div class="box" id="page2" style="display:none;">
+  <p>
+    This rose is not just a flower,<br>
+    ye meri wo feeling hai<br>
+    jo har din tumhe dekh kar fresh ho jaati hai 🌹<br><br>
+
+    Tum meri life ka wo soft sa moment ho<br>
+    jahan duniya thodi slow ho jaati hai,<br>
+    aur dil sirf tumhara naam leta hai.
+  </p>
+  <button id="nextBtn" onclick="nextPage()">Next ❤️</button>
+</div>
+
+<div class="box" id="page3" style="display:none;">
+  <p>
+    I don’t know kal kya hoga,<br>
+    but aaj sirf itna kehna hai —<br><br>
+
+    <b>I like you, I miss you,</b><br>
+    and I really wish<br>
+    <b>tum meri Rose ban jao 🌹</b>
+  </p>
+  <h2>– Pinky ❤️</h2>
+</div>
+
+<script>
+let page = 1;
+function nextPage() {
+  document.getElementById("page"+page).style.display = "none";
+  page++;
+  document.getElementById("page"+page).style.display = "block";
+}
+</script>
+
+</body>
+</html>
