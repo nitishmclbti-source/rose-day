@@ -1,129 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Rose Day for Chutki 🌹</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Happy Rose Day 🌹</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #ffdde1, #ee9ca7);
+      text-align: center;
+    }
 
-<style>
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #ff4b6e, #ff9a9e);
-  overflow: hidden;
-  color: white;
-}
+    h1 {
+      color: #b3003b;
+      margin-top: 20px;
+      font-size: 40px;
+    }
 
-.rose-bg span {
-  position: absolute;
-  top: -50px;
-  font-size: 24px;
-  animation: fall linear infinite;
-  opacity: 0.8;
-}
+    p {
+      color: #4d0026;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
 
-@keyframes fall {
-  0% { transform: translateY(-50px); }
-  100% { transform: translateY(110vh); }
-}
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
 
-.box {
-  position: relative;
-  z-index: 2;
-  background: rgba(255,255,255,0.15);
-  margin: 60px auto;
-  padding: 25px;
-  width: 90%;
-  max-width: 420px;
-  border-radius: 20px;
-  text-align: center;
-  backdrop-filter: blur(6px);
-}
+    .gallery img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
+    }
 
-h1 {
-  font-size: 28px;
-  margin-bottom: 10px;
-}
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
 
-p {
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-button {
-  padding: 12px 24px;
-  border: none;
-  border-radius: 25px;
-  font-size: 16px;
-  margin: 12px;
-  cursor: pointer;
-}
-
-#nextBtn {
-  background: white;
-  color: #ff4b6e;
-}
-
-</style>
+    footer {
+      margin: 30px 0;
+      color: #66001a;
+      font-size: 16px;
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- Falling roses -->
-<div class="rose-bg">
-  <span style="left:5%; animation-duration:8s;">🌹</span>
-  <span style="left:15%; animation-duration:10s;">🌹</span>
-  <span style="left:30%; animation-duration:7s;">🌹</span>
-  <span style="left:45%; animation-duration:9s;">🌹</span>
-  <span style="left:60%; animation-duration:11s;">🌹</span>
-  <span style="left:75%; animation-duration:8s;">🌹</span>
-  <span style="left:90%; animation-duration:10s;">🌹</span>
-</div>
-
-<div class="box" id="page1">
   <h1>Happy Rose Day 🌹</h1>
-  <p>
-    Chutki,<br><br>
-    Aaj Rose Day hai…<br>
-    log sirf phool dete hain,<br>
-    main apna dil words me de raha hoon.
-  </p>
-  <button id="nextBtn" onclick="nextPage()">Next 🌹</button>
-</div>
+  <p>Every rose reminds me of you ❤️</p>
 
-<div class="box" id="page2" style="display:none;">
-  <p>
-    This rose is not just a flower,<br>
-    ye meri wo feeling hai<br>
-    jo har din tumhe dekh kar fresh ho jaati hai 🌹<br><br>
+  <div class="gallery">
+    <img src="photos/photo1.jpg">
+    <img src="photos/photo2.jpg">
+    <img src="photos/photo3.jpg">
+    <img src="photos/photo4.jpg">
+    <img src="photos/photo5.jpg">
+    <img src="photos/photo6.jpg">
+    <img src="photos/photo7.jpg">
+    <img src="photos/photo8.jpg">
+    <img src="photos/photo9.jpg">
+    <img src="photos/photo10.jpg">
+  </div>
 
-    Tum meri life ka wo soft sa moment ho<br>
-    jahan duniya thodi slow ho jaati hai,<br>
-    aur dil sirf tumhara naam leta hai.
-  </p>
-  <button id="nextBtn" onclick="nextPage()">Next ❤️</button>
-</div>
-
-<div class="box" id="page3" style="display:none;">
-  <p>
-    I don’t know kal kya hoga,<br>
-    but aaj sirf itna kehna hai —<br><br>
-
-    <b>I like you, I miss you,</b><br>
-    and I really wish<br>
-    <b>tum meri Rose ban jao 🌹</b>
-  </p>
-  <h2>– Pinky ❤️</h2>
-</div>
-
-<script>
-let page = 1;
-function nextPage() {
-  document.getElementById("page"+page).style.display = "none";
-  page++;
-  document.getElementById("page"+page).style.display = "block";
-}
-</script>
+  <footer>
+    Made with ❤️ just for you
+  </footer>
 
 </body>
 </html>
